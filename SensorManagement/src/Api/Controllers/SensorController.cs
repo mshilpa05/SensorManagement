@@ -22,12 +22,6 @@ namespace Api.Controllers
             {
                 var sensorDtos = await _sensorService.GetAllSensorsAsync();
 
-                if (sensorDtos == null)
-                {
-                    _logger.LogWarning("Database is empty");
-                    return NotFound();
-                }
-
                 _logger.LogInformation("Request handled successfully.");
                 return Ok(sensorDtos);
             }
