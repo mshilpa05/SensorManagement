@@ -11,12 +11,12 @@ namespace API.Tests
     {
         private readonly Mock<ISensorService> _mockSensorService;
         private readonly SensorController _controller;
-        private readonly Mock<ILogger<SensorController>> _logger;
+        private readonly Mock<ILogger<SensorController>> _mockLogger;
         public SensorControllerTests()
         {
             _mockSensorService = new Mock<ISensorService>();
-            _logger = new Mock<ILogger<SensorController>>();
-            _controller = new SensorController(_mockSensorService.Object, _logger.Object);
+            _mockLogger = new Mock<ILogger<SensorController>>();
+            _controller = new SensorController(_mockSensorService.Object, _mockLogger.Object);
         }
 
         [Fact]
@@ -169,7 +169,7 @@ namespace API.Tests
         }
 
         [Fact]
-        public async Task WhenSensorIsDeletedSuccessfully_OnDeleteSensor_ReturnsNoContent()
+        public async Task GivenSensorIsDeletedSuccessfully_OnDeleteSensor_ReturnsNoContent()
         {
             var sensorId = Guid.NewGuid();
             _mockSensorService.Setup(s => s.DeleteSensorAsync(sensorId)).ReturnsAsync(true);
@@ -180,7 +180,7 @@ namespace API.Tests
         }
 
         [Fact]
-        public async Task WhenSensorDoesNotExist_OnDeleteSensor_ReturnsNotFound()
+        public async Task GivenSensorDoesNotExist_OnDeleteSensor_ReturnsNotFound()
         {
             var sensorId = Guid.NewGuid();
             _mockSensorService.Setup(s => s.DeleteSensorAsync(sensorId)).ReturnsAsync(false);
