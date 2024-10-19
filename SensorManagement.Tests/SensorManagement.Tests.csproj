@@ -23,11 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application.Tests\" />
-    <Folder Include="Infrastructure.Tests\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\SensorManagement\SensorManagement.csproj" />
   </ItemGroup>
 

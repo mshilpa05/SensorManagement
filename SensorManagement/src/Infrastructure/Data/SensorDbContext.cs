@@ -11,5 +11,13 @@ namespace Infrastructure.Data
         }
 
         public DbSet<Sensor> Sensor { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Sensor>()
+                .Property(sensor => sensor.CreationTime)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP") 
+                .ValueGeneratedOnAdd();
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace SensorManagement.src.Application.Mappings
         public SensorMappingProfile()
         {
             CreateMap<Sensor, SensorViewDTO>();
+            CreateMap<SensorDTO, Sensor>();
         }
     }
 }
