@@ -63,7 +63,7 @@ namespace Api.Controllers
 
                 var sensorId = await _sensorService.CreateSensorAsync(sensorCreateDTO);
 
-                return Created(nameof(CreateSensor), new
+                return Created(nameof(GetSensorById), new
                 {
                     Message = "Resource created successfully.",
                     Data = sensorId.ToString()
@@ -81,11 +81,6 @@ namespace Api.Controllers
         {
             try
             {
-                if (sensorUpdateDTO == null)
-                {
-                    return BadRequest("Request body cannot be empty");
-                }
-
                 if(sensorUpdateDTO.UpperWarning < sensorUpdateDTO.LowerWarning)
                 {
                     return BadRequest("UpperWarning cannot be lower than LowerWarning");
@@ -95,10 +90,10 @@ namespace Api.Controllers
 
                 if (updated)
                 {
-                    return Ok(new { Message = "Resource updated successfully." });
+                    return Ok("Resource updated successfully." );
                 }
 
-                return NotFound(new { Message = "Resource not found." });
+                return NotFound("Resource not found.");
             }
             catch (Exception ex)
             {
@@ -119,7 +114,7 @@ namespace Api.Controllers
                     return NoContent();
                 }
 
-                return NotFound(new { Message = "Resource not found." });
+                return NotFound("Resource not found.");
             }
             catch (Exception ex)
             {
