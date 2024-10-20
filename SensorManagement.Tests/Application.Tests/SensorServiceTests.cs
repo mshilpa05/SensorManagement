@@ -1,16 +1,9 @@
-﻿using Api.Controllers;
-using Application.DTO;
+﻿using Application.DTO;
 using Application.Interface;
 using Application.Services;
 using AutoMapper;
 using Domain.Entities;
-using Microsoft.Extensions.Logging;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Tests
 {
