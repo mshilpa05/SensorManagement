@@ -1,13 +1,17 @@
 using Application.Interface;
 using Application.Services;
 using Microsoft.EntityFrameworkCore;
-using SensorManagement.src.Application.Mappings;
+using Application.Mappings;
 using Infrastructure;
 using Infrastructure.Data;
+using Api.Models;
+using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.AddConsole();
+
+builder.Services.Configure<PlatformApiConfig>(builder.Configuration.GetSection("ExternalApiSettings"));
 
 builder.Configuration.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "src/Api"));
 builder.Configuration
@@ -21,6 +25,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<ISensorService, SensorService>();
 builder.Services.AddScoped<ISensorRepository, SensorRepository>();
+builder.Services.AddHttpClient<IPlatformService, PlatformService>();
 
 builder.Services.AddAutoMapper(typeof(SensorMappingProfile).Assembly);
 

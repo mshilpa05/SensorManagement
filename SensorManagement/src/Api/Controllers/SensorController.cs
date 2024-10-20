@@ -11,6 +11,7 @@ namespace Api.Controllers
     {
         private readonly ISensorService _sensorService;
         private readonly ILogger _logger;
+
         public SensorController(ISensorService sensorService, ILogger<SensorController> logger)
         {
             _sensorService = sensorService;

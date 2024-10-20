@@ -2,7 +2,7 @@
 using AutoMapper;
 using Domain.Entities;
 
-namespace SensorManagement.src.Application.Mappings
+namespace Application.Mappings
 {
     public class SensorMappingProfile : Profile
     {
