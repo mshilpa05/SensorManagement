@@ -1,9 +1,8 @@
 ﻿using Domain.Entities;
-using Infrastructure;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace SensorManagement.Tests.Infrastructure.Tests
+namespace Infrastructure.Tests
 {
     [CollectionDefinition("SequentialTests", DisableParallelization = true)]
     public class SensorRepositoryTests : IDisposable

@@ -26,4 +26,13 @@
     <Folder Include="src\Infrastructure\Data\DB\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="src\Api\appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="src\Api\appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

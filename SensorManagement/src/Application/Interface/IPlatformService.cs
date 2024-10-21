@@ -1,10 +1,11 @@
-﻿using Application.DTO;
-using Application.Models;
+﻿using Application.Models;
+using Domain.Entities;
+using System.Net;
 
 namespace Application.Interface
 {
     public interface IPlatformService
     {
-        Task<PlatformApiResponseDTO?> GetPlatformDataAsync(string endpoint, PlatformApiParameters platformApiParameters);
+        Task<(HttpStatusCode,PlatformApiResponse?)> GetPlatformDataAsync(string endpoint, PlatformApiParameters platformApiParameters);
     }
 }

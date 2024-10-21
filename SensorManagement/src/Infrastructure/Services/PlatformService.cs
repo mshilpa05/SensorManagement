@@ -1,7 +1,7 @@
-﻿using Application.DTO;
-using Application.Interface;
+﻿using Application.Interface;
 using Application.Models;
 using Newtonsoft.Json;
+using Domain.Entities;
 using System.Net;
 
 namespace Infrastructure.Services
@@ -17,7 +17,7 @@ namespace Infrastructure.Services
             _logger = logger;
         }
 
-        public async Task<PlatformApiResponseDTO?> GetPlatformDataAsync(string endpoint, PlatformApiParameters platformApiParameters)
+        public async Task<(HttpStatusCode, PlatformApiResponse?)> GetPlatformDataAsync(string endpoint, PlatformApiParameters platformApiParameters)
         {
             try
             {
@@ -28,18 +28,18 @@ namespace Infrastructure.Services
                 if (response.IsSuccessStatusCode)
                 {
                     var data = await response.Content.ReadAsStringAsync();
-                    return JsonConvert.DeserializeObject<PlatformApiResponseDTO>(data);
+                    return (response.StatusCode,JsonConvert.DeserializeObject<PlatformApiResponse>(data));
                 }
                 else
                 {
                     _logger.LogError($"Failed to fetch data from {endpoint}: {response.StatusCode}");
-                    return default;
+                    return (response.StatusCode, null);
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while calling the platform API");
-                return default;
+                return (HttpStatusCode.InternalServerError, null);
             }
         }
 

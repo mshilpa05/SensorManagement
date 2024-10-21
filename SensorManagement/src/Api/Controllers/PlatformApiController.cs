@@ -3,8 +3,9 @@ using Application.Interface;
 using Application.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.Net;
 
-namespace SensorManagement.src.Api.Controllers
+namespace Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -26,16 +27,26 @@ namespace SensorManagement.src.Api.Controllers
         [HttpGet("data")]
         public async Task<IActionResult> GetPlatformData([FromQuery]PlatformApiParameters platformApiParameters)
         {
-            var result = await _platformService.GetPlatformDataAsync(_endpoint, platformApiParameters);
-            // Todo remove dependency between api and infra layer
-
-            if (result == null)
+            try
             {
-                _logger.LogError("Failed to fetch data from external API");
-                return StatusCode(500, "Failed to fetch data from external API");
+                var (responseCode, result) = await _platformService.GetPlatformDataAsync(_endpoint, platformApiParameters);
+                // Todo remove dependency between api and infra layer
+                if(responseCode == HttpStatusCode.OK)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return StatusCode((int)responseCode);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "An error occurred during the request.");
+                return StatusCode(500, "An internal server error occurred.");
             }
 
-            return Ok(result);
         }
     }
 }

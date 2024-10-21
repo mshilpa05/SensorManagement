@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.AddConsole();
 
-builder.Services.Configure<PlatformApiConfig>(builder.Configuration.GetSection("ExternalApiSettings"));
+builder.Services.Configure<PlatformApiConfig>(builder.Configuration.GetSection("PlatformApiSettings"));
 
 builder.Configuration.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "src/Api"));
 builder.Configuration
