@@ -33,6 +33,7 @@ namespace Infrastructure.Tests
         {
             var result = await _sensorRepository.GetAllSensorsAsync();
 
+            Assert.NotNull(result);
             Assert.Empty(result);
         }
 

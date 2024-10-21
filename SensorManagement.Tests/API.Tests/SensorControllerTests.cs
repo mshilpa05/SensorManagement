@@ -90,6 +90,7 @@ namespace API.Tests
 
             var createdResult = Assert.IsType<CreatedResult>(result);
             var responseObject = createdResult.Value;
+            Assert.NotNull(responseObject);
             Assert.Equal("Resource created successfully.", responseObject.GetType().GetProperty("Message")?.GetValue(responseObject, null));
             Assert.Equal(sensorId.ToString(), responseObject.GetType().GetProperty("Data")?.GetValue(responseObject, null));
         }

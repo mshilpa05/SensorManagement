@@ -38,6 +38,7 @@ namespace Application.Tests
 
             var result = await _sensorService.GetAllSensorsAsync();
 
+            Assert.NotNull(result);
             Assert.Equal(sensorViewDTOs[0].Id, result.ElementAt(0).Id);
             Assert.Equal(sensorViewDTOs[1].Id, result.ElementAt(1).Id);
         }

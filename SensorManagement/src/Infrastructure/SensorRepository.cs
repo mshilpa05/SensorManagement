@@ -13,7 +13,7 @@ namespace Infrastructure
             _context = context;
         }
 
-        public async Task<IEnumerable<Sensor>> GetAllSensorsAsync()
+        public async Task<IEnumerable<Sensor>?> GetAllSensorsAsync()
         {
             return await _context.Sensor.ToListAsync();
         }
